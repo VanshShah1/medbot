@@ -1,14 +1,10 @@
-"""Welcome to Reflex! This file outlines the steps to create a basic app."""
 from rxconfig import config
 import neurum
 import reflex as rx
-
-docs_url = "https://reflex.dev/docs/getting-started/introduction"
-filename = f"{config.app_name}/{config.app_name}.py"
-
+from bardapi import Bard
 
 class State(rx.State):
-    form_data : dict = {} 
+    form_data : dict = {}
     ans : str = ""
     show: bool = True
 
@@ -18,12 +14,11 @@ class State(rx.State):
           self.show = not (self.show)
           self.show = False
 
-
 def index() -> rx.Component:
     return rx.vstack(
 
-        rx.heading("medbot", 
-                   color="white", 
+        rx.heading("medbot",
+                   color="white",
                    font_size="5em",
                    text_shadow="0px 5px 30px #505050",
                    padding_bottom="20px",
@@ -38,7 +33,7 @@ def index() -> rx.Component:
                         speed=1.0,
                         is_loaded=False,
                         border_radius="15px",
-                        start_color="#121212",
+                        start_color="#323232",
                         end_color="black",
                     ),
                     height="300px",
@@ -71,6 +66,16 @@ def index() -> rx.Component:
 
         rx.form(
             rx.hstack(
+                rx.upload(
+                    rx.button(rx.icon(tag="plus_square"),
+                            height="50px",
+                            width="50px",
+                            _hover={"box_shadow":"0px 0px 30px #999999"},
+                            
+                            ),
+                            border="1px dotted rgb(107,99,246)",
+                            border_radius="10px",
+                    ),
                 rx.input(placeholder="prompt",
                     bg_color="#181818",
                     id="prompt",
@@ -96,7 +101,7 @@ def index() -> rx.Component:
         ),
     )
 styles={
-     "background_color":"black"
+     "background_color":"#000000"
 }
 # Add state and page to the app.
 app = rx.App(style=styles)
