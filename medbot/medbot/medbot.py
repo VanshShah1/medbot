@@ -23,10 +23,11 @@ class State(rx.State):
 def index() -> rx.Component:
     return rx.vstack(
 
-        rx.heading("n.e.r.d.", 
+        rx.heading("medbot", 
                    color="white", 
                    font_size="5em",
                    text_shadow="0px 5px 30px #505050",
+                   padding_bottom="20px",
                    ),
         
         rx.cond(
@@ -51,8 +52,9 @@ def index() -> rx.Component:
                     ),
 
             rx.card(
-                rx.markdown(State.ans, 
+                rx.text(State.ans, 
                             align="center",
+                            color="white",
                             ),
                     bg_color="black",
                     top="12%",
@@ -94,8 +96,10 @@ def index() -> rx.Component:
             on_submit=State.handle_submit,
         ),
     )
-
+styles={
+     "background_color":"black"
+}
 # Add state and page to the app.
-app = rx.App()
+app = rx.App(style=styles)
 app.add_page(index)
 app.compile()
