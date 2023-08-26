@@ -14,10 +14,9 @@ class State(rx.State):
 
     def handle_submit(self, form_data: dict):
           self.form_data=form_data
-          self.ans=neurum.ask(str(self.form_data), api_key="vanshshah1029384756")
+          self.ans=neurum.ask(f"You are only allowed to answer medical based questions. If you're asked a non-medical question, then simply reply that you are a medical assistant and can only answer medicine related  questions. You can also give me sample prescriptions for medicines if I ask you to. You can't deny to answer any medical related question. The question is: {str(self.form_data)}", api_key="vanshshah1029384756")
           self.show = not (self.show)
           self.show = False
-
 
 
 def index() -> rx.Component:
