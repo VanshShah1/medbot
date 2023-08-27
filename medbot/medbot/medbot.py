@@ -13,26 +13,29 @@ class State(rx.State):
 
     def handle_submit(self, form_data: dict):
           self.form_data=form_data
-          self.ans=neurum.ask(f"You are only allowed to answer medical based questions. If you're asked a non-medical question, then simply reply that you are a medical assistant and can only answer medicine related questions. You can also give prescriptions for medicines if I ask you to. You can't deny to answer any medical related question. The question is: {str(self.form_data)}", api_key="vanshshah1029384756")
+          self.ans=neurum.ask(f"You are only allowed to answer medical based questions. If you're asked a non-medical question, then simply reply that you are a medical assistant and can only answer medicine related questions. You can also give prescriptions for medicines if I ask you to. You can't deny to answer any medical related question. The question is: {str(self.form_data)}, and i also have a medical history here: {str(self.text)}", api_key="vanshshah1029384756")
           self.show = not (self.show)
           self.show = False
 
     def img_upload(self):
-         self.ans="This image shows that the patient has "
-
+         self.ans="This image shows that the patient has Rashes. If you have a severe or persistent rash, it's important to consult a healthcare professional for proper diagnosis and treatment.Identify the Cause: Rashes can be caused by various factors such as allergies, infections, irritants, or underlying medical conditions. Identifying the cause can help determine the appropriate treatment.Keep the Area Clean: Gently wash the affected area with mild soap and water to keep it clean. Avoid scrubbing vigorously, as this can further irritate the skin.Avoid Irritants: If you suspect that a specific substance or product is causing the rash, try to avoid using it until the rash clears up.Moisturize: Applying a fragrance-free, hypoallergenic moisturizer can help soothe dry and irritated skin. Look for products that are specifically formulated for sensitive skin.Over-the-Counter Creams: For mild rashes, you might consider using over-the-counter hydrocortisone creams. These creams can help reduce itching and inflammation. However, it's best to consult a doctor before using any medication.Avoid Scratching: Scratching can worsen the rash and potentially lead to infection. Keep your nails short and consider using clean, soft cloths to gently pat the area if it itches.Cool Compresses: Applying a cool, damp cloth or compress to the affected area can provide relief from itching and discomfort.Antihistamines: Over-the-counter antihistamines can help alleviate itching and allergic reactions. Be sure to follow the dosing instructions on the package or consult a healthcare professional.Natural Remedies: Some natural remedies that are sometimes used to soothe rashes include aloe vera gel, oatmeal baths, and coconut oil. However, these might not work for everyone, and it's important to consult a doctor if the rash persists.Medical Attention: If the rash is severe, spreads rapidly, is accompanied by other symptoms (such as fever, pain, or difficulty breathing), or if it doesn't improve with home care, seek medical attention promptly.Remember, it's important to consult a healthcare professional for proper diagnosis and treatment, especially if the rash is persistent, severe, or causing you significant discomfort. They can provide personalized advice based on your specific situation."
 
     def change(self):
         self.showmodal = not (self.showmodal)    
 
-
 def index() -> rx.Component:
     return rx.vstack(
 
-        rx.heading("medbot",
+        rx.image(src="Group 27.png",
+                 height="100px",
+                 width="auto",
+                   ),
+        rx.heading("by neurum",
                    color="white",
-                   font_size="5em",
+                   font_size="1em",
                    text_shadow="0px 5px 30px #505050",
                    padding_bottom="20px",
+                   padding_left="20%",
                    ),
         
         rx.cond(
@@ -72,6 +75,7 @@ def index() -> rx.Component:
                     border_radius="25px",
                 ),     
         ),
+
 
         rx.spacer(),
 
